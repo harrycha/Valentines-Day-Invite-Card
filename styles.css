@@ -240,8 +240,8 @@ p {
 
 /* Basic confetti effect */
 @keyframes confetti {
-    0% { opacity: 1; transform: translateY(-10px) rotate(30deg); }
-    100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
+    0% { opacity: 1; transform: translateY(-50px) scale(1); }
+    100% { opacity: 0; transform: translateY(100vh) scale(0.5); }
 }
 
 @keyframes boo {
@@ -251,10 +251,9 @@ p {
 
 .confetti {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #f39c12;
+    font-size: 3rem; /* Adjust size of emojis */
     animation: confetti 2s ease-in-out infinite;
+    pointer-events: none; /* Prevent emojis from blocking interaction */
 }
 
 .boo-emoji {

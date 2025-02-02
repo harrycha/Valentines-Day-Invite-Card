@@ -15,13 +15,23 @@ function celebrate(isYes) {
         celebrationElement.style.display = 'block'; // Show celebration div
         
         // Generate confetti particles
-        for (let i = 0; i < 100; i++) {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.animationDelay = Math.random() * 2 + 's';
-            celebrationElement.appendChild(confetti);
-        }
+for (let i = 0; i < 50; i++) {
+    const emoji = document.createElement('div');
+    emoji.classList.add('boo-emoji');
+
+    // Randomize emojis (including roses and hearts)
+    const emojis = ['🌹', '❤️','🥰']; // Add roses and hearts here
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)]; // Randomly choose from the emojis array
+
+    // Random horizontal position
+    emoji.style.left = Math.random() * 100 + 'vw'; // Spread the emojis across the screen
+
+    // Random delay for falling effect
+    emoji.style.animationDelay = Math.random() * 2 + 's';
+
+    // Append the emoji to the container
+    celebrationElement.appendChild(emoji);
+}
 
         // Hide the celebration after 5 seconds
         setTimeout(() => {
