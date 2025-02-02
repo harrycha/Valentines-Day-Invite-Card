@@ -1,62 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        :root {
-            --envelope-color: #ff4b6e;
-            --card-color: #fff;
-        }
+/* Body setup */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffebeb;
+}
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
 
-        .envelope {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            background-color: var(--envelope-color);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+/* Envelope */
+#envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+}
 
-        .envelope:hover {
-            transform: scale(1.05);
-        }
+#envelope:hover {
+    transform: scale(1.05);
+}
 
-        .flap {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100px;
-            background-color: var(--envelope-color);
-            clip-path: polygon(0 0, 50% 50%, 100% 0);
-            transform-origin: top;
-            transition: transform 0.6s ease;
-            z-index: 2;
-        }
+/* Envelope flap */
+#envelope-details-inside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-color: #808080;
+    clip-path: polygon(0 0, 100% 0%, 50% 100%);
+    z-index: 0;
+}
 
-        .card {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            background-color: var(--card-color);
-            transform: translateY(0);
-            transition: transform 0.6s ease;
-            z-index: 1;
-            padding: 20px;
-            text-align: center;
-        }
+/* Envelope details outside (with From and To labels) */
+#envelope-details-outside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background-color: #fff;
+    clip-path: polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0);
+    z-index: 2;
+    padding: 10px;
+    overflow: hidden; /* Hide overflowing content */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 110px; /* Reduced space to allow labels to sit closer */
+    border-radius: 8px;
+}
 
-        .envelope.open .flap {
-            transform: rotateX(180deg);
-        }
 
-        .envelope.open .card {
-            transform: translateY(-100px);
-        }
+/* From and To labels (closer together) */
+#from, #to {
+    color: #333;
+    font-size: 16px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 5px 0;
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        text-align: center;
+        margin-bottom: 15px; 
+    }
+}
+
+
+/* Envelope 
+
+
+/* Envelope flap */
+#envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-color: #ff6666;
+    clip-path: polygon(0 0, 100% 0%, 50% 100%);
+    cursor: pointer;
+    transition: transform 0.8s ease;
+    transform-origin: top;
+    z-index: 1;
+}
+
+/* Card */
+.card {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    width: 80%;
+    height: 200%;
+    background-color: #ffb3b3;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    top: 0;
+    overflow: auto;
+    padding-bottom: 200px;
+    clip-path: polygon(100% 0, 100% 10%, 50% 35%, 0% 10%, 0 0)
+}
+
+/* Card content */
+.card-content {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 15px; 
+}
+
+/* The line between the header and letter content */
+.separator {
+    border: 0;
+    border-top: 2px solid #ff6666; /* Red line */
+    margin-top: 20px; /* Space above the line */
+    margin-bottom: 20px; /* Space below the line */
+}
+
+.valentine-question {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+.valentine-question label {
+    margin: 0 10px;
+}
+
+.valentine-question input {
+    margin-right: 5px;
+}
+
+/* Dragging state */
+.card:active {
+    cursor: grabbing;
+}
+
+/* Open envelope animation */
+.opened #envelope-flap {
+    transform: rotateX(180deg);
+}
+
+/* Envelope open state */
+.opened #card {
+    opacity: 1;
+    pointer-events: auto;
+    animation: fadeIn 0.5s ease forwards, moveUp 1.4s 0.8s ease forwards, animate 1.4s 0.4s ease-in forwards; /* Fade in then move up after 0.5s along with masking the bottom*/
+}
+
+/* Fade-in keyframe */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes moveUp {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: -200px; /* Adjust the value as needed */
+    }
+}
+
+@keyframes animate {
+    0% {
+        clip-path: polygon(100% 0, 100% 10%, 50% 35%, 0% 10%, 0 0);
+    }
+    100% {
+        clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0% 80%, 0 0);
+    }
+}
+
+/* Custom scrollbar */
+#card::-webkit-scrollbar {
+    width: 8px;
+}
+
+#card::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+#card::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+
+/* Celebration Effect */
+#celebration, #boo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Make sure it doesn't interfere with user interaction */
+    z-index: 9999;
+    display: none; /* Hidden by default */
+}
+
+/* Basic confetti effect */
+@keyframes confetti {
+    0% { opacity: 1; transform: translateY(-10px) rotate(30deg); }
+    100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
+}
+
+@keyframes boo {
+    0% { opacity: 1; transform: translateY(-50px) scale(1); }
+    100% { opacity: 0; transform: translateY(100vh) scale(0.5); }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f39c12;
+    animation: confetti 2s ease-in-out infinite;
+}
+
+.boo-emoji {
+    position: absolute;
+    font-size: 3rem; /* Adjust size of emojis */
+    animation: boo 2s ease-in-out infinite;
+    pointer-events: none; /* Prevent emojis from blocking interaction */
+}
+
+.celebration-hidden, .boo-hidden {
+    display: none;
+}

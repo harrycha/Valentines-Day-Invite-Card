@@ -3,18 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Card</title>
+    <title>Valentine's Day Envelope</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="envelope" onclick="this.classList.toggle('open')">
-        <div class="flap"></div>
-        <div class="card">
-            <h2>Happy Valentine's Day!</h2>
-            <p>To: [Their Name]</p>
-            <p>Your special message here...</p>
-            <p>From: [Your Name]</p>
+    <div id="envelope">
+        <div id="envelope-flap" class="flap"></div>
+        <div id="envelope-details-inside"></div>
+        <div id="envelope-details-outside">
+            <div id="from">
+                <p>From: Secret Admirer</p>
+            </div>
+            <div id="to">
+                <p>To: Someone Special</p>
+            </div>
+        </div>
+        <div class="card-container">
+            <div id="card" class="card" draggable="true">
+                <div class="card-content">
+                    <h1>🌹 Happy 🌹  Valentine's  🌹  Day!  🌹</h1>
+                    <hr class="separator">
+                    <p>Dear Madhu,</p>
+                        <p>Although we are miles away, from the moment I met you, my heart has been a little brighter, my smile a little wider, and every day feels like a little more magic. 💖
+
+                            This Valentine's Day, I want to make it official:
+                            
+                            Would you do me the honor of being my Valentine?
+                            
+                            I promise to make you feel loved, appreciated, and cherished—today and every day after.
+                            
+                            With all that I can.</p>
+                        <p>Love, Your Secret Admirer</p>
+                        <div class="valentine-question">
+                            <p>Will you be my Valentine? 🤔</p>
+                            <label>
+                                <input type="radio" name="valentine" value="yes" id="yes" onclick="celebrate(true)">
+                                Yes
+                            </label>
+                            <label>
+                                <input type="radio" name="valentine" value="no" id="no" onclick="boo(true)">
+                                No
+                            </label>
+                        </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div id="celebration" class="celebration-hidden"></div>
+    <div id="boo" class="boo-hidden"></div>
+    <script src="script.js"></script>
 </body>
 </html>
