@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.preview-mode .content {
+    display: none;
+}
+
 /* Body setup */
 body {
     font-family: 'Arial', sans-serif;
