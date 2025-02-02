@@ -58,8 +58,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 110px; /* Reduced space to allow labels to sit closer */
-    border-radius: 8px;
+    padding-top: 115px; /* Reduced space to allow labels to sit closer */
+    border-radius: 5px;
 }
 
 
@@ -70,7 +70,7 @@ body {
     text-align: center;
     background-color: #fff;
     border-radius: 4px;
-    margin: 5px 0;
+    margin: 7 0;
     p {
         font-size: 18px;
         line-height: 1.6;
